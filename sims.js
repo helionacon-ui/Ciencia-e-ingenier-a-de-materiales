@@ -758,5 +758,51 @@ SIMS.corrosion=el=>build(el,{w:660,h:400,
   Soluciones: aislar eléctricamente los dos metales, elegir metales próximos en la serie, invertir las áreas (pieza grande activa y elemento pequeño noble), pintar el <b>cátodo</b> (nunca solo el ánodo) o añadir ánodos de sacrificio de Zn o Mg.<br>
   <span class="hint">Un tornillo de acero en una chapa de cobre falla en semanas; un tornillo de cobre en una chapa de acero aguanta años. Es el mismo par con las áreas al revés.</span>`);}});
 
+/* ---- Regla de la palanca paso a paso (C₀ = 28 %, 840 °C, C_α = 20 %, C_L = 40 %) ---- */
+SIMS.palancaPaso=el=>build(el,{w:640,h:380,
+ sliders:[{k:'paso',v:0,min:0,max:5,step:1,l:'paso de la regla de la palanca (0 = diagrama)',u:''}],
+ draw(a){a.clear();const p=a.st.paso;
+  const K={L:'#3a63c4',al:'#2c8a52',c0:'#c43d63',tie:'#b8730c'};
+  const X=c=>40+c*4.2, Y=T=>330-(T-600)*0.75;
+  // fronteras (líquidus y solidus)
+  a.line(X(0),Y(1000),X(100),Y(600),K.L,2.5);
+  a.line(X(0),Y(900),X(100),Y(600),K.al,2.5);
+  a.line(X(0),Y(600),X(100),Y(600),C.muted,1.5);
+  a.line(X(0),Y(600),X(0),Y(1000),C.muted,1.5);
+  a.txt('Líquido (L)',X(70),Y(930),K.L,14,'center');
+  a.txt('α',X(8),Y(640),K.al,16,'center');
+  a.txt('α + L',X(52),Y(760),C.text,13,'center');
+  a.txt('Composición C (% B)',X(50),362,C.muted,12,'center');
+  a.txt('T (°C)',X(0)-30,Y(1000)-6,C.muted,12,'left');
+  [0,20,40,60,80,100].forEach(c=>a.txt(String(c),X(c),Y(600)+16,C.muted,11,'center'));
+  // línea de unión y composiciones
+  if(p>=1){
+    a.line(X(20),Y(840),X(40),Y(840),K.tie,3.5);
+    a.circ(X(20),Y(840),4,K.al,true); a.circ(X(40),Y(840),4,K.L,true);
+    a.txt('C_α = 20 %',X(20),Y(840)-10,K.al,12,'center');
+    a.txt('C_L = 40 %',X(40),Y(840)-10,K.L,12,'center');
+    a.txt('840 °C',X(0)+4,Y(840)-6,K.tie,12,'left');
+  }
+  if(p>=2){ // composición de la aleación
+    a.line(X(28),Y(840),X(28),Y(600),K.c0,1.5,[4,3]);
+    a.circ(X(28),Y(840),4,K.c0,true);
+    a.txt('C₀ = 28 %',X(28)+4,Y(600)-10,K.c0,12,'left');
+  }
+  // resultados
+  const items=[[60,1,'Línea de unión a 840 °C',C.text],[84,2,'W_L = (C₀ − C_α)/(C_L − C_α)',K.L],[104,2,'    = 8/20 = 0,40',K.L],
+    [128,3,'W_α = (C_L − C₀)/(C_L − C_α)',K.al],[148,3,'    = 12/20 = 0,60',K.al],[172,4,'W_L + W_α = 1 ✓',C.text],[196,5,'40 % líquido + 60 % α',K.tie]];
+  a.txt('Regla de la palanca',470,36,C.text,14,'left');
+  items.forEach(([y,k,s,c])=>{if(p>=k)a.txt(s,470,y,c,11,'left');});
+  const T=[
+   'Aleación con C₀ = 28 % de B (en % en masa) a 840 °C. Está en la zona de dos fases, así que hay líquido y α. Sube el paso para aplicar la regla de la palanca.',
+   'Dibujamos la línea de unión horizontal a 840 °C: corta la frontera del líquido en C_L = 40 % y la del sólido en C_α = 20 %.',
+   'Fracción de líquido: W_L = (C₀ − C_α)/(C_L − C_α) = (28 − 20)/(40 − 20) = 0,40. Es la distancia de C₀ al sólido, dividida por toda la línea.',
+   'Fracción de α: W_α = (C_L − C₀)/(C_L − C_α) = (40 − 28)/20 = 0,60. Es la distancia de C₀ al líquido.',
+   'Comprobación: W_L + W_α = 0,40 + 0,60 = 1. Si no suma 1, hay un error en los puntos de la línea de unión.',
+   'Resultado: a 840 °C hay un 40 % en masa de líquido y un 60 % de α. Las composiciones de las fases vienen fijadas por la línea de unión; la regla da proporciones de masa.'
+  ];
+  a.html(`<div>${T[p]}</div>`);
+ }});
+
 document.querySelectorAll('[data-sim]').forEach(el=>{const f=SIMS[el.dataset.sim];if(f)f(el);});
 })();
