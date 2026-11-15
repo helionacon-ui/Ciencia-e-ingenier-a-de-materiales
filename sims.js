@@ -804,5 +804,25 @@ SIMS.palancaPaso=el=>build(el,{w:640,h:380,
   a.html(`<div>${T[p]}</div>`);
  }});
 
+
+/* ---- paso a paso declarativo ---- */
+SIMS.__paso=(el,D)=>build(el,{w:D.w||660,h:D.h||340,
+ sliders:[{k:'paso',v:0,min:0,max:D.steps.length,step:1,l:'paso de la resolución (0 = enunciado)',u:''}],
+ draw(a){a.clear();const g=a.g,p=a.st.paso;
+  const it=(x,col)=>{const k=x[0];
+   if(k==='t')a.txt(x[1],x[2],x[3],col,x[4]||13,x[5]||'left');
+   else if(k==='l')a.line(x[1],x[2],x[3],x[4],col,x[5]||1.5,x[6]);
+   else if(k==='a')a.arrow(x[1],x[2],x[3],x[4],col,x[5]);
+   else if(k==='c')a.circ(x[1],x[2],x[3],col,!!x[4]);
+   else if(k==='r'){g.strokeStyle=col;g.lineWidth=1.8;if(x[5]){g.fillStyle=col;g.globalAlpha=.18;g.fillRect(x[1],x[2],x[3],x[4]);g.globalAlpha=1;}g.strokeRect(x[1],x[2],x[3],x[4]);}
+   else if(k==='p'){g.strokeStyle=col;g.lineWidth=x[2]||2;g.beginPath();x[1].forEach((q,i)=>i?g.lineTo(q[0],q[1]):g.moveTo(q[0],q[1]));g.stroke();}};
+  (D.base||[]).forEach(x=>it(x,C.muted));
+  D.steps.forEach((s,i)=>{if(i+1>p)return;const cur=(i+1===p);(s.add||[]).forEach(x=>it(x,cur?C.d:C.text));if(cur)(s.now||[]).forEach(x=>it(x,C.d));});
+  a.html('<div>'+(p===0?D.q:D.steps[p-1].text)+'</div>');}});
+/* ---- fin paso a paso declarativo ---- */
+
+/* ---- paso2 traccionPaso ---- */
+SIMS.traccionPaso=el=>SIMS.__paso(el,{"w":620,"h":265,"q":"En un ensayo de tracción de una probeta de 10 mm de diámetro y 50 mm de longitud, 20 kN producen 0,0603 mm de alargamiento. Calcula el módulo de Young. Sube el paso.","base":[["t","Probeta d₀ = 10 mm · L₀ = 50 mm",30,26,14,"left"]],"steps":[{"text":"Ensayo de tracción: probeta cilíndrica de <b>d₀ = 10 mm</b> y longitud de medida <b>L₀ = 50 mm</b>. Con <b>F = 20 kN</b> se mide un alargamiento de <b>0,0603 mm</b> (zona elástica). ¿Cuánto vale E?","add":[["l",370,230,610,230,1.5],["l",370,230,370,80,1.5],["t","ε",610,246,12,"right"],["t","σ",364,88,12,"right"]]},{"text":"Sección inicial: <b>A₀ = πd₀²/4 = π·10²/4 = 78,54 mm²</b>.","add":[["t","A₀ = πd₀²/4 = 78,54 mm²",30,64,15,"left"]]},{"text":"Tensión nominal (de ingeniería): <b>σ = F/A₀ = 20000/78,54 = 254,6 MPa</b>.","add":[["t","σ = F/A₀ = 254,6 MPa",30,98,15,"left"]]},{"text":"Deformación unitaria: <b>ε = ΔL/L₀ = 0,0603/50 = 0,00121</b> (0,12 %).","add":[["t","ε = ΔL/L₀ = 0,00121",30,132,15,"left"],["c",398.944,120.86518187984319,5,1]]},{"text":"Módulo de elasticidad (ley de Hooke, tramo recto): <b>E = σ/ε = 254,6/0,00121 = 211 GPa</b>. Es el valor típico de un acero (~210 GPa).","add":[["t","E = σ/ε ≈ 211 GPa",30,166,16,"left"],["l",370,230,404.7328,99.03821825581184,2.5]]},{"text":"Si el material empieza a fluir con F<sub>y</sub> = 24 kN, el límite elástico es <b>σ<sub>y</sub> = 24000/78,54 = 306 MPa</b>, con ε<sub>y</sub> = σ<sub>y</sub>/E ≈ 0,14 %. Más allá de ese punto la deformación ya no es recuperable.","add":[["t","σ_y = 24000/A₀ = 306 MPa",30,200,15,"left"],["t","ε_y = σ_y/E ≈ 0,14 %",30,234,14,"left"]]}]});
+/* ---- fin paso2 traccionPaso ---- */
 document.querySelectorAll('[data-sim]').forEach(el=>{const f=SIMS[el.dataset.sim];if(f)f(el);});
 })();
