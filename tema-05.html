@@ -17,24 +17,64 @@
 <style id="lectura">
 @media screen{
 :root{--body:"Atkinson Hyperlegible Next","Atkinson Hyperlegible","Segoe UI",system-ui,-apple-system,sans-serif}
-body{font-family:var(--body);font-size:20.5px;line-height:2.1;letter-spacing:.022em;word-spacing:.09em}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+body{font-family:var(--body);font-size:20px;line-height:1.95;letter-spacing:.014em;word-spacing:.05em}
+p{margin:0 0 1.5em;max-width:64ch;hyphens:auto;-webkit-hyphens:auto}
+li{margin:.72em 0;max-width:64ch}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:17px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:25px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);letter-spacing:.1em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font:700 12px/1.7 var(--mono,monospace);letter-spacing:.09em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2em;font-size:12.5px;color:var(--fg);opacity:.72}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+.eqd{margin:1.65em 0;text-align:center;overflow-x:auto;overflow-y:hidden}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);
+ letter-spacing:.1em;text-transform:uppercase;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:18px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:17px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:15.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+.enun p,.inner p{text-align:left}
+@media (min-width:1040px){
+p,li{text-align:justify}
+.zero .lede,.enun p,.inner p,figcaption,.ft{text-align:left}
+}
+@media (max-width:600px){
+body{font-size:18.5px;line-height:1.9}
+p{text-align:left}
+.zero .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 </head>
@@ -46,24 +86,24 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c6);--tcs:var(--c6s)">
 <div class="sh"><span aria-hidden="true" class="badge">5</span><div class="shx"><p class="kick">Bloque II · Transformaciones y tratamientos · Tema 5</p><h2 id="t5">Propiedades mecánicas</h2><div class="tags"><span class="tag">Bloque II · Transformaciones y tratamientos</span><span class="tag">Primer parcial</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Interpretar la curva tensión-deformación del ensayo de tracción (E, Rp0,2, Rm, A, Z), calcular con dureza, resiliencia Charpy, temperatura de transición dúctil-frágil, fatiga y fluencia.</p><p><b>Ensayo de tracción</b> (UNE-EN ISO 6892-1). Tensión ingenieril \(\sigma=F/S_0\) y deformación \(\varepsilon=\Delta L/L_0\). De la curva se sacan:</p>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> Interpretar la curva tensión-deformación del ensayo de tracción (E, Rp0,2, Rm, A, Z), calcular con dureza, resiliencia Charpy, temperatura de transición dúctil-frágil, fatiga y fluencia.</p><p class="run"><b>Ensayo de tracción:</b> (UNE-EN ISO 6892-1). Tensión ingenieril \(\sigma=F/S_0\) y deformación \(\varepsilon=\Delta L/L_0\). De la curva se sacan:</p>
 <ul><li><b>Módulo de Young E</b> = pendiente de la zona elástica (\(\sigma=E\varepsilon\), ley de Hooke).</li>
 <li><b>Límite elástico \(R_{p0,2}\)</b>: tensión para un 0,2 % de deformación plástica (recta paralela a la elástica desplazada 0,002). En algunos enunciados piden al 0,1 % o al 1 %.</li>
 <li><b>Resistencia a tracción \(R_m\)</b> = \(F_{max}/S_0\) (máximo de la curva; a partir de ahí hay estricción).</li>
 <li><b>Alargamiento a rotura</b> \(A=\dfrac{L_f-L_0}{L_0}\times100\) y <b>estricción</b> \(Z=\dfrac{S_0-S_f}{S_0}\times100\): miden la ductilidad.</li>
 <li><b>Tenacidad</b> = área bajo la curva (energía por unidad de volumen).</li></ul>
-<p><b>Dureza</b>: Brinell (bola, UNE-EN ISO 6506), Vickers (pirámide de diamante, 6507), Rockwell (penetración diferencial, 6508). Relación útil en aceros: \(R_m\ \mathrm{(MPa)}\approx3{,}5\,HB\).</p>
-<p><b>Resiliencia (Charpy)</b>: energía absorbida al romper una probeta entallada. Con el péndulo: \(W=mg(h_0-h_f)\) y la <b>resiliencia</b> \(\rho=W/S\), con S la sección bajo la entalla (probeta <b>Mesnager</b>: 0,8 cm², es decir \(8\times10^{-5}\) m²). La <b>temperatura de transición dúctil-frágil</b> (sólo en BCC y en polímeros, no en FCC) se define como la del valor medio entre energías máxima y mínima, o la de un valor fijado (p. ej. 50 J o 20 J).</p>
-<p><b>Fatiga</b>: rotura por cargas cíclicas muy por debajo de \(R_m\); curva S-N y <b>límite de fatiga</b> (los aceros lo tienen, el aluminio no). <b>Fluencia (creep)</b>: deformación lenta a alta temperatura (&gt; 0,4 \(T_f\)); se usan curvas de tiempo a rotura frente a tensión (parámetro de Larson-Miller) para estimar la vida en servicio.</p></div>
+<p class="run"><b>Dureza:</b> Brinell (bola, UNE-EN ISO 6506), Vickers (pirámide de diamante, 6507), Rockwell (penetración diferencial, 6508). Relación útil en aceros: \(R_m\ \mathrm{(MPa)}\approx3{,}5\,HB\).</p>
+<p class="run"><b>Resiliencia (Charpy):</b> energía absorbida al romper una probeta entallada. Con el péndulo: \(W=mg(h_0-h_f)\) y la <b>resiliencia</b> \(\rho=W/S\), con S la sección bajo la entalla (probeta <b>Mesnager</b>: 0,8 cm², es decir \(8\times10^{-5}\) m²). La <b>temperatura de transición dúctil-frágil</b> (sólo en BCC y en polímeros, no en FCC) se define como la del valor medio entre energías máxima y mínima, o la de un valor fijado (p. ej. 50 J o 20 J).</p>
+<p class="run"><b>Fatiga:</b> rotura por cargas cíclicas muy por debajo de \(R_m\); curva S-N y <b>límite de fatiga</b> (los aceros lo tienen, el aluminio no). <b>Fluencia (creep)</b>: deformación lenta a alta temperatura (&gt; 0,4 \(T_f\)); se usan curvas de tiempo a rotura frente a tensión (parámetro de Larson-Miller) para estimar la vida en servicio.</p></div>
 <!--ill--><div class="ill-wrap"><h3 class="ill-h" style="margin:22px 0 4px">En imágenes</h3><figure class="ill"><div class="ill-t">Lo que cuenta una curva σ–ε</div><svg viewBox="0 0 560 262" role="img" aria-label="Curva de tracción" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><line x1="40" y1="214" x2="282.8" y2="214" stroke="var(--muted)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="290,214 282.7,217.3 282.7,210.7" fill="var(--muted)"/><line x1="40" y1="214" x2="40" y2="37.2" stroke="var(--muted)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="40,30 43.3,37.3 36.7,37.3" fill="var(--muted)"/><text x="290" y="230" fill="var(--muted)" font-size="12" text-anchor="end" font-style="italic" opacity="1">ε</text><text x="46" y="28" fill="var(--muted)" font-size="12" text-anchor="start" font-style="italic" opacity="1">σ</text><path d="M40,214 L88,86 Q110,60 160,52 Q200,50 214,76 L232,112" fill="none" stroke="var(--tc,var(--accent))" stroke-width="3" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><circle cx="88" cy="86" r="4.5" fill="var(--warn,#b8730c)" stroke="none" stroke-width="1.8" opacity="1"/><circle cx="166" cy="52" r="4.5" fill="var(--c5,#c43d63)" stroke="none" stroke-width="1.8" opacity="1"/><circle cx="232" cy="112" r="5" fill="var(--c6,#2c8a52)" stroke="none" stroke-width="1.8" opacity="1"/><line x1="88" y1="86" x2="88" y2="214" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3" opacity="1" stroke-linecap="round"/><line x1="40" y1="86" x2="88" y2="86" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3" opacity="1" stroke-linecap="round"/><text x="62" y="80" fill="var(--warn,#b8730c)" font-size="13" text-anchor="middle" font-weight="700" opacity="1">σy</text><text x="166" y="42" fill="var(--c5,#c43d63)" font-size="13" text-anchor="middle" font-weight="700" opacity="1">σR</text><text x="244" y="126" fill="var(--c6,#2c8a52)" font-size="12" text-anchor="start" font-weight="700" opacity="1">rotura</text><line x1="40" y1="214" x2="88" y2="86" stroke="var(--tc,var(--accent))" stroke-width="0.01" opacity="1" stroke-linecap="round"/><text x="46" y="160" fill="var(--tc,var(--accent))" font-size="14" text-anchor="start" font-weight="700" opacity="1">E</text><line x1="232" y1="112" x2="252" y2="214" stroke="var(--muted)" stroke-width="1.2" stroke-dasharray="4 3" opacity="1" stroke-linecap="round"/><text x="252" y="230" fill="var(--muted)" font-size="11.5" text-anchor="middle" opacity="1">ε residual</text><text x="318" y="56" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">E: pendiente elástica</text><text x="318" y="78" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">(rigidez).</text><text x="318" y="100" fill="var(--warn,#b8730c)" font-size="14" text-anchor="start" font-weight="700" opacity="1">σy: fin de lo elástico.</text><text x="318" y="122" fill="var(--c5,#c43d63)" font-size="14" text-anchor="start" font-weight="700" opacity="1">σR: resistencia máxima.</text><text x="318" y="155" fill="var(--tc,var(--accent))" font-size="14" text-anchor="start" font-weight="700" opacity="1">Ductilidad = deformación</text><text x="318" y="177" fill="var(--tc,var(--accent))" font-size="14" text-anchor="start" font-weight="700" opacity="1">hasta la rotura.</text></svg><figcaption>La pendiente da la rigidez, el codo el límite elástico y el pico la resistencia a tracción; la deformación final mide lo dúctil que es.</figcaption></figure><figure class="ill"><div class="ill-t">El área bajo la curva es la tenacidad</div><svg viewBox="0 0 560 262" role="img" aria-label="Dúctil frente a frágil" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><line x1="36" y1="214" x2="282.8" y2="214" stroke="var(--muted)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="290,214 282.7,217.3 282.7,210.7" fill="var(--muted)"/><line x1="36" y1="214" x2="36" y2="37.2" stroke="var(--muted)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="36,30 39.3,37.3 32.7,37.3" fill="var(--muted)"/><text x="290" y="230" fill="var(--muted)" font-size="12" text-anchor="end" font-style="italic" opacity="1">ε</text><text x="42" y="28" fill="var(--muted)" font-size="12" text-anchor="start" font-style="italic" opacity="1">σ</text><path d="M36,214 L74,64" fill="none" stroke="var(--c6,#2c8a52)" stroke-width="3" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><text x="78" y="60" fill="var(--c6,#2c8a52)" font-size="12.5" text-anchor="start" font-weight="700" opacity="1">frágil</text><path d="M36,214 L76,106 Q130,86 180,84 Q232,84 262,120" fill="none" stroke="var(--tc,var(--accent))" stroke-width="3" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><text x="150" y="76" fill="var(--tc,var(--accent))" font-size="12.5" text-anchor="start" font-weight="700" opacity="1">dúctil (metal)</text><path d="M36,214 L56,196 Q110,150 170,120 Q230,100 276,92" fill="none" stroke="var(--c5,#c43d63)" stroke-width="3" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><text x="212" y="106" fill="var(--c5,#c43d63)" font-size="10" text-anchor="start" opacity="1"></text><text x="318" y="56" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">Frágil: rompe sin</text><text x="318" y="78" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">deformación plástica.</text><text x="318" y="100" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">Dúctil: se estira antes de</text><text x="318" y="122" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">romper (avisa).</text><text x="318" y="155" fill="var(--tc,var(--accent))" font-size="14" text-anchor="start" font-weight="700" opacity="1">Tenacidad = área bajo la</text><text x="318" y="177" fill="var(--tc,var(--accent))" font-size="14" text-anchor="start" font-weight="700" opacity="1">curva (energía absorbida).</text></svg><figcaption>Un material frágil puede ser muy resistente pero absorbe poca energía; uno dúctil aguanta más hasta romper.</figcaption></figure></div><!--/ill--><details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 5 <span class="src">7 símbolos</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">σ = F/S₀</td><td>Tensión ingenieril</td><td class="u">MPa</td></tr><tr><td class="sym">ε = ΔL/L₀</td><td>Deformación</td><td class="u"></td></tr><tr><td class="sym">R_p0,2</td><td>Límite elástico al 0,2 %</td><td class="u">MPa</td></tr><tr><td class="sym">R_m</td><td>Resistencia a tracción</td><td class="u">MPa</td></tr><tr><td class="sym">A, Z</td><td>Alargamiento y estricción</td><td class="u">%</td></tr><tr><td class="sym">HB, HV, HRc</td><td>Durezas Brinell, Vickers, Rockwell</td><td class="u"></td></tr><tr><td class="sym">ρ (resiliencia)</td><td>Energía/sección entallada</td><td class="u">kJ/m²; Mesnager 0,8 cm²</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva - curva tension-deformacion punto a punto</p><div data-sim="traccion"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano en el examen.</figcaption></figure>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">El ensayo de tracción y lo que se lee en él</p><p>Se estira una probeta de sección \(S_0\) y longitud \(L_0\) hasta romper, midiendo fuerza y alargamiento. Se normaliza: tensión \(\sigma=F/S_0\) y deformación \(\varepsilon=\Delta L/L_0\). En la <b>zona elástica</b> (reversible), \(\sigma=E\varepsilon\) (ley de Hooke, con \(E\) el módulo de Young). Más allá del <b>límite elástico</b> hay deformación plástica permanente; el máximo de la curva es la <b>resistencia a tracción</b> \(R_m=F_{max}/S_0\) y después se forma una estricción hasta la rotura.</p><p class="ft">Ductilidad, dureza, resiliencia</p><p>La <b>ductilidad</b> se mide con el alargamiento \(A=(L_f-L_0)/L_0\) y la estricción \(Z=(S_0-S_f)/S_0\). La <b>dureza</b> (Brinell HB, Vickers, Rockwell) mide la resistencia a ser rayado o penetrado, y en aceros se relaciona con la resistencia: \(R_m\approx3{,}5\,HB\) (MPa). La <b>resiliencia</b> (ensayo Charpy) es la energía absorbida al romper una probeta entallada de un golpe: indica la tenacidad y revela la transición dúctil-frágil con la temperatura.</p>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">El ensayo de tracción y lo que se lee en él</p><p class="lede">Se estira una probeta de sección \(S_0\) y longitud \(L_0\) hasta romper, midiendo fuerza y alargamiento. Se normaliza: tensión \(\sigma=F/S_0\) y deformación \(\varepsilon=\Delta L/L_0\). En la <b>zona elástica</b> (reversible), \(\sigma=E\varepsilon\) (ley de Hooke, con \(E\) el módulo de Young). Más allá del <b>límite elástico</b> hay deformación plástica permanente; el máximo de la curva es la <b>resistencia a tracción</b> \(R_m=F_{max}/S_0\) y después se forma una estricción hasta la rotura.</p><p class="ft">Ductilidad, dureza, resiliencia</p><p>La <b>ductilidad</b> se mide con el alargamiento \(A=(L_f-L_0)/L_0\) y la estricción \(Z=(S_0-S_f)/S_0\). La <b>dureza</b> (Brinell HB, Vickers, Rockwell) mide la resistencia a ser rayado o penetrado, y en aceros se relaciona con la resistencia: \(R_m\approx3{,}5\,HB\) (MPa). La <b>resiliencia</b> (ensayo Charpy) es la energía absorbida al romper una probeta entallada de un golpe: indica la tenacidad y revela la transición dúctil-frágil con la temperatura.</p>
 <p>Atención a unidades: \(1\ \text{kp/mm}^2=9{,}81\) MPa.</p></div><!--/amp1--><!--deep--><h3 id="t5-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
-<h4>1. Tensión y deformación</h4>
+<h4><span class="hn">1</span>Tensión y deformación</h4>
 <div class="eqd">\[\sigma=\frac FA_0,\qquad \varepsilon=\frac{\Delta l}{l_0},\qquad \sigma=E\,\varepsilon\ \ (\text{zona elástica})\]</div>
 <ul><li><b>Módulo de Young \(E\):</b> rigidez del material. Viene del enlace y casi no cambia con el tratamiento.</li><li><b>Coeficiente de Poisson \(\nu\):</b> cuánto se estrecha al estirarse, \(\nu=-\varepsilon_{lat}/\varepsilon_{long}\).</li></ul>
-<h4>2. Cómo se lee el ensayo de tracción</h4>
+<h4><span class="hn">2</span>Cómo se lee el ensayo de tracción</h4>
 <ul><li><b>Límite elástico \(\sigma_y\):</b> donde empieza la deformación permanente (se usa el 0,2 % de deformación si no hay un codo claro).</li><li><b>Resistencia a tracción \(R_m\):</b> el máximo de la curva ingenieril.</li><li><b>Ductilidad:</b> alargamiento a rotura o estricción. <b>Resiliencia:</b> área hasta el límite elástico. <b>Tenacidad:</b> área total bajo la curva.</li></ul>
 <div class="box trap deepnote"><b>Cuidado.</b> La curva «real» usa el área instantánea: \(\sigma_v=\sigma(1+\varepsilon)\) y \(\varepsilon_v=\ln(1+\varepsilon)\). Pasado el máximo, la ingenieril baja por la estricción, la real no.</div>
 <details class="dem"><summary><span class="pn">∴</span>Dureza, fractura y fatiga</summary><div class="inner"><ul><li><b>Dureza</b> (Brinell, Vickers, Rockwell): resistencia a la indentación. Para aceros, \(R_m\approx3{,}45\,\mathrm{HB}\) (MPa).</li><li><b>Dúctil</b> (con estricción y mucha energía) frente a <b>frágil</b> (sin deformación previa). Las bajas temperaturas y las entallas favorecen la fractura frágil.</li><li><b>Fatiga:</b> rotura con cargas repetidas muy por debajo del límite elástico. Se estudia con la curva S-N y el <b>límite de fatiga</b>.</li><li><b>Fluencia (creep):</b> deformación lenta a alta temperatura y carga constante.</li></ul></div></details>

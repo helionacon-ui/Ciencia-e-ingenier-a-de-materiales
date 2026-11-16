@@ -17,24 +17,64 @@
 <style id="lectura">
 @media screen{
 :root{--body:"Atkinson Hyperlegible Next","Atkinson Hyperlegible","Segoe UI",system-ui,-apple-system,sans-serif}
-body{font-family:var(--body);font-size:20.5px;line-height:2.1;letter-spacing:.022em;word-spacing:.09em}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+body{font-family:var(--body);font-size:20px;line-height:1.95;letter-spacing:.014em;word-spacing:.05em}
+p{margin:0 0 1.5em;max-width:64ch;hyphens:auto;-webkit-hyphens:auto}
+li{margin:.72em 0;max-width:64ch}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:17px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:25px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);letter-spacing:.1em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font:700 12px/1.7 var(--mono,monospace);letter-spacing:.09em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2em;font-size:12.5px;color:var(--fg);opacity:.72}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+.eqd{margin:1.65em 0;text-align:center;overflow-x:auto;overflow-y:hidden}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);
+ letter-spacing:.1em;text-transform:uppercase;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:18px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:17px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:15.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+.enun p,.inner p{text-align:left}
+@media (min-width:1040px){
+p,li{text-align:justify}
+.zero .lede,.enun p,.inner p,figcaption,.ft{text-align:left}
+}
+@media (max-width:600px){
+body{font-size:18.5px;line-height:1.9}
+p{text-align:left}
+.zero .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 </head>
@@ -46,25 +86,25 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c6);--tcs:var(--c6s)">
 <div class="sh"><span aria-hidden="true" class="badge">13</span><div class="shx"><p class="kick">Bloque IV · Propiedades funcionales · Tema 13</p><h2 id="t13">Semiconductividad</h2><div class="tags"><span class="tag">Bloque IV · Propiedades funcionales</span><span class="tag">Segundo parcial</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Distinguir semiconductores intrínsecos y extrínsecos, calcular conductividad con electrones y huecos, situar el nivel de Fermi y explicar la unión p-n y el efecto Hall.</p><p><b>Semiconductor intrínseco</b> (Si, Ge, GaAs puros): los portadores se crean por excitación térmica a través del gap, siempre en <b>pares electrón-hueco</b>: \(n=p=n_i\). Entonces</p>
-<p>\(\sigma=n_ie(\mu_e+\mu_h)\), con \(n_i\propto\exp\left(-\dfrac{E_g}{2kT}\right)\).</p>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> Distinguir semiconductores intrínsecos y extrínsecos, calcular conductividad con electrones y huecos, situar el nivel de Fermi y explicar la unión p-n y el efecto Hall.</p><p class="run"><b>Semiconductor intrínseco:</b> (Si, Ge, GaAs puros): los portadores se crean por excitación térmica a través del gap, siempre en <b>pares electrón-hueco</b>: \(n=p=n_i\). Entonces</p>
+<p class="lede">\(\sigma=n_ie(\mu_e+\mu_h)\), con \(n_i\propto\exp\left(-\dfrac{E_g}{2kT}\right)\).</p>
 <p>El nivel de Fermi está (casi) en el <b>centro del gap</b>. Al subir la temperatura \(n_i\) crece exponencialmente y la <b>conductividad AUMENTA</b> (al contrario que en los metales): es el comportamiento que delata a un semiconductor.</p>
-<p><b>Semiconductor extrínseco</b>: se dopa. <b>Tipo n</b> (donadores pentavalentes: P, As, Sb en Si): el nivel donador está justo bajo la banda de conducción, \(n\approx N_d\), los electrones son los portadores mayoritarios y el nivel de Fermi se desplaza <b>hacia arriba</b>. <b>Tipo p</b> (aceptores trivalentes: B, Al, Ga): nivel aceptor justo sobre la banda de valencia, \(p\approx N_a\), huecos mayoritarios, Fermi <b>hacia abajo</b>. En ambos \(\sigma\approx N e\mu\) con el portador mayoritario y la <b>ley de acción de masas</b> \(np=n_i^2\).</p>
+<p class="run"><b>Semiconductor extrínseco:</b> se dopa. <b>Tipo n</b> (donadores pentavalentes: P, As, Sb en Si): el nivel donador está justo bajo la banda de conducción, \(n\approx N_d\), los electrones son los portadores mayoritarios y el nivel de Fermi se desplaza <b>hacia arriba</b>. <b>Tipo p</b> (aceptores trivalentes: B, Al, Ga): nivel aceptor justo sobre la banda de valencia, \(p\approx N_a\), huecos mayoritarios, Fermi <b>hacia abajo</b>. En ambos \(\sigma\approx N e\mu\) con el portador mayoritario y la <b>ley de acción de masas</b> \(np=n_i^2\).</p>
 <p>Un extrínseco tiene tres zonas de comportamiento con T: ionización (sube), <b>zona extrínseca o plateau</b> (casi constante: todos los dopantes ionizados, es la de trabajo de los dispositivos) y zona intrínseca (al final domina la generación térmica y se dispara).</p>
-<p><b>Unión p-n</b>: la difusión de portadores crea una zona de agotamiento con un campo interno y una barrera de potencial. <b>Directa</b> (p al +): la barrera baja y conduce; <b>inversa</b>: la barrera sube y solo pasa una corriente de fuga. Es la base del diodo, del LED (recombinación radiante), de la célula fotovoltaica y del transistor.</p>
-<p><b>Efecto Hall</b> (práctica de laboratorio): con corriente I en un campo B perpendicular, aparece una tensión transversal \(V_H=\dfrac{IB}{n\,q\,t}\), con el <b>coeficiente de Hall</b> \(R_H=\dfrac1{nq}\). <b>Su signo indica el tipo de portador</b> (positivo para huecos, tipo p; negativo para electrones, tipo n) y su valor permite calcular la densidad de portadores y, con la conductividad, la movilidad: \(\mu=\sigma|R_H|\).</p></div>
+<p class="run"><b>Unión p-n:</b> la difusión de portadores crea una zona de agotamiento con un campo interno y una barrera de potencial. <b>Directa</b> (p al +): la barrera baja y conduce; <b>inversa</b>: la barrera sube y solo pasa una corriente de fuga. Es la base del diodo, del LED (recombinación radiante), de la célula fotovoltaica y del transistor.</p>
+<p class="run"><b>Efecto Hall:</b> (práctica de laboratorio): con corriente I en un campo B perpendicular, aparece una tensión transversal \(V_H=\dfrac{IB}{n\,q\,t}\), con el <b>coeficiente de Hall</b> \(R_H=\dfrac1{nq}\). <b>Su signo indica el tipo de portador</b> (positivo para huecos, tipo p; negativo para electrones, tipo n) y su valor permite calcular la densidad de portadores y, con la conductividad, la movilidad: \(\mu=\sigma|R_H|\).</p></div>
 <!--ill--><div class="ill-wrap"><h3 class="ill-h" style="margin:22px 0 4px">En imágenes</h3><figure class="ill"><div class="ill-t">La anchura del «hueco» separa los tres tipos</div><svg viewBox="0 0 560 262" role="img" aria-label="Bandas de energía" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><rect x="28" y="150" width="70" height="50" rx="3" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="2" opacity="0.25"/><text x="63" y="180" fill="var(--fg)" font-size="12" text-anchor="middle" font-weight="700" opacity="1">BV</text><rect x="28" y="134" width="70" height="50" rx="3" fill="var(--c5,#c43d63)" stroke="var(--c5,#c43d63)" stroke-width="2" opacity="0.25"/><text x="63" y="163" fill="var(--fg)" font-size="12" text-anchor="middle" font-weight="700" opacity="1">BC</text><text x="63" y="224" fill="var(--fg)" font-size="12.5" text-anchor="middle" font-weight="700" opacity="1">Metal</text><rect x="116" y="150" width="70" height="50" rx="3" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="2" opacity="0.25"/><text x="151" y="180" fill="var(--fg)" font-size="12" text-anchor="middle" font-weight="700" opacity="1">BV</text><rect x="116" y="76" width="70" height="40" rx="3" fill="var(--c5,#c43d63)" stroke="var(--c5,#c43d63)" stroke-width="2" opacity="0.25"/><text x="151" y="100" fill="var(--fg)" font-size="12" text-anchor="middle" font-weight="700" opacity="1">BC</text><line x1="198" y1="150" x2="198" y2="121.4" stroke="var(--muted)" stroke-width="1.4" opacity="1" stroke-linecap="round"/><polygon points="198,116 200.4,121.5 195.6,121.5" fill="var(--muted)"/><line x1="198" y1="116" x2="198" y2="144.6" stroke="var(--muted)" stroke-width="1.4" opacity="1" stroke-linecap="round"/><polygon points="198,150 195.6,144.5 200.4,144.5" fill="var(--muted)"/><text x="202" y="137" fill="var(--warn,#b8730c)" font-size="11" text-anchor="start" font-weight="700" opacity="1">Eg</text><text x="151" y="224" fill="var(--fg)" font-size="12.5" text-anchor="middle" font-weight="700" opacity="1">Semiconductor</text><rect x="204" y="150" width="70" height="50" rx="3" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="2" opacity="0.25"/><text x="239" y="180" fill="var(--fg)" font-size="12" text-anchor="middle" font-weight="700" opacity="1">BV</text><rect x="204" y="20" width="70" height="40" rx="3" fill="var(--c5,#c43d63)" stroke="var(--c5,#c43d63)" stroke-width="2" opacity="0.25"/><text x="239" y="44" fill="var(--fg)" font-size="12" text-anchor="middle" font-weight="700" opacity="1">BC</text><line x1="286" y1="150" x2="286" y2="65.4" stroke="var(--muted)" stroke-width="1.4" opacity="1" stroke-linecap="round"/><polygon points="286,60 288.4,65.5 283.6,65.5" fill="var(--muted)"/><line x1="286" y1="60" x2="286" y2="144.6" stroke="var(--muted)" stroke-width="1.4" opacity="1" stroke-linecap="round"/><polygon points="286,150 283.6,144.5 288.4,144.5" fill="var(--muted)"/><text x="290" y="109" fill="var(--warn,#b8730c)" font-size="11" text-anchor="start" font-weight="700" opacity="1">Eg</text><text x="239" y="224" fill="var(--fg)" font-size="12.5" text-anchor="middle" font-weight="700" opacity="1">Aislante</text><text x="24" y="254" fill="var(--muted)" font-size="11.5" text-anchor="start" opacity="1">BC: conducción · BV: valencia</text><text x="330" y="56" fill="var(--tc,var(--accent))" font-size="14" text-anchor="start" font-weight="700" opacity="1">Eg pequeño (≈ 1 eV):</text><text x="330" y="78" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">la agitación térmica</text><text x="330" y="100" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">pasa electrones a la BC.</text><text x="330" y="133" fill="var(--muted)" font-size="13.5" text-anchor="start" opacity="1">Si: 1,1 eV; Ge: 0,67 eV.</text><text x="330" y="155" fill="var(--muted)" font-size="13.5" text-anchor="start" opacity="1">Aislante: Eg &gt; 3 eV.</text></svg><figcaption>Un metal no tiene hueco entre bandas; un semiconductor lo tiene pequeño; un aislante, muy grande.</figcaption></figure><figure class="ill"><div class="ill-t">Un diodo es la unión de dos semiconductores</div><svg viewBox="0 0 560 262" role="img" aria-label="Unión p–n" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><rect x="30" y="70" width="100" height="80" rx="0" fill="var(--c5,#c43d63)" stroke="var(--c5,#c43d63)" stroke-width="2" opacity="0.2"/><rect x="130" y="70" width="100" height="80" rx="0" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="2" opacity="0.2"/><text x="80" y="62" fill="var(--c5,#c43d63)" font-size="15" text-anchor="middle" font-weight="700" opacity="1">p</text><text x="180" y="62" fill="var(--tc,var(--accent))" font-size="15" text-anchor="middle" font-weight="700" opacity="1">n</text><circle cx="52" cy="90" r="5" fill="none" stroke="var(--c5,#c43d63)" stroke-width="1.8" opacity="1"/><circle cx="86" cy="112" r="5" fill="none" stroke="var(--c5,#c43d63)" stroke-width="1.8" opacity="1"/><circle cx="60" cy="130" r="5" fill="none" stroke="var(--c5,#c43d63)" stroke-width="1.8" opacity="1"/><circle cx="104" cy="96" r="5" fill="none" stroke="var(--c5,#c43d63)" stroke-width="1.8" opacity="1"/><circle cx="156" cy="96" r="4" fill="var(--tc,var(--accent))" stroke="none" stroke-width="1.8" opacity="1"/><circle cx="196" cy="116" r="4" fill="var(--tc,var(--accent))" stroke="none" stroke-width="1.8" opacity="1"/><circle cx="210" cy="92" r="4" fill="var(--tc,var(--accent))" stroke="none" stroke-width="1.8" opacity="1"/><circle cx="170" cy="132" r="4" fill="var(--tc,var(--accent))" stroke="none" stroke-width="1.8" opacity="1"/><rect x="106" y="70" width="48" height="80" rx="0" fill="var(--warn,#b8730c)" stroke="var(--warn,#b8730c)" stroke-width="1.6" opacity="0.14" stroke-dasharray="4 3"/><text x="130" y="172" fill="var(--warn,#b8730c)" font-size="11" text-anchor="middle" font-weight="700" opacity="1">zona de carga espacial</text><line x1="110" y1="110" x2="142.8" y2="110" stroke="var(--warn,#b8730c)" stroke-width="2" opacity="1" stroke-linecap="round"/><polygon points="150,110 142.7,113.3 142.7,106.7" fill="var(--warn,#b8730c)"/><text x="130" y="104" fill="var(--warn,#b8730c)" font-size="12" text-anchor="middle" font-weight="700" opacity="1">E</text><text x="30" y="206" fill="var(--muted)" font-size="12" text-anchor="start" opacity="1">○ huecos (p)   ● electrones (n)</text><text x="318" y="56" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">Directa: se reduce la</text><text x="318" y="78" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">barrera y circula</text><text x="318" y="100" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">corriente.</text><text x="318" y="122" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">Inversa: la barrera</text><text x="318" y="144" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">crece y casi no pasa.</text><text x="318" y="177" fill="var(--tc,var(--accent))" font-size="14" text-anchor="start" font-weight="700" opacity="1">Es el diodo.</text></svg><figcaption>En la unión se forma una zona vacía de portadores con un campo eléctrico que solo deja pasar la corriente en un sentido.</figcaption></figure></div><!--/ill--><details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 13 <span class="src">7 símbolos</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">E_g</td><td>Anchura de banda prohibida</td><td class="u">eV; Si 1,1 · Ge 0,67</td></tr><tr><td class="sym">n_i</td><td>Portadores intrínsecos</td><td class="u">m⁻³; Si 1,5·10¹⁶</td></tr><tr><td class="sym">N_d, N_a</td><td>Donadores / aceptores</td><td class="u">m⁻³</td></tr><tr><td class="sym">np = n_i²</td><td>Ley de acción de masas</td><td class="u"></td></tr><tr><td class="sym">E_F</td><td>Nivel de Fermi</td><td class="u">eV</td></tr><tr><td class="sym">V_H, R_H</td><td>Tensión y coeficiente de Hall</td><td class="u">V; m³/C</td></tr><tr><td class="sym">k</td><td>Constante de Boltzmann</td><td class="u">8,62·10⁻⁵ eV/K</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva - bandas, nivel de Fermi y conductividad</p><div data-sim="semiconductor"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano en el examen.</figcaption></figure>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Bandas, huecos y electrones</p><p>En un semiconductor, la banda de valencia está llena y la de conducción vacía a 0 K, separadas por una pequeña <b>banda prohibida</b> \(E_g\) (Si: 1,1 eV; Ge: 0,67; GaAs: 1,42). Al aumentar la temperatura, algunos electrones saltan a la banda de conducción y dejan un <b>hueco</b>: ambos transportan corriente. En un semiconductor intrínseco, \(n=p=n_i\) y \(\sigma=n_ie(\mu_e+\mu_h)\), con \(n_i\propto e^{-E_g/2kT}\): la conductividad <b>aumenta</b> con la temperatura (al revés que en un metal).</p><p class="ft">Dopado y efecto Hall</p><p>Se añaden impurezas para controlar la conductividad: <b>donadoras</b> (P, As en Si) dan electrones (tipo n, \(\sigma\approx N_de\mu_e\)); <b>aceptoras</b> (B, Al) dan huecos (tipo p, \(\sigma\approx N_ae\mu_h\)). Siempre se cumple la <b>ley de acción de masas</b> \(np=n_i^2\). El <b>efecto Hall</b> (campo magnético perpendicular a la corriente) crea una tensión \(V_H=IB/(nqt)\) cuyo signo dice si los portadores son electrones o huecos y cuyo valor da su concentración.</p></div><!--/amp1--><!--deep--><h3 id="t13-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
-<h4>1. Las bandas de energía</h4>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Bandas, huecos y electrones</p><p class="lede">En un semiconductor, la banda de valencia está llena y la de conducción vacía a 0 K, separadas por una pequeña <b>banda prohibida</b> \(E_g\) (Si: 1,1 eV; Ge: 0,67; GaAs: 1,42). Al aumentar la temperatura, algunos electrones saltan a la banda de conducción y dejan un <b>hueco</b>: ambos transportan corriente. En un semiconductor intrínseco, \(n=p=n_i\) y \(\sigma=n_ie(\mu_e+\mu_h)\), con \(n_i\propto e^{-E_g/2kT}\): la conductividad <b>aumenta</b> con la temperatura (al revés que en un metal).</p><p class="ft">Dopado y efecto Hall</p><p>Se añaden impurezas para controlar la conductividad: <b>donadoras</b> (P, As en Si) dan electrones (tipo n, \(\sigma\approx N_de\mu_e\)); <b>aceptoras</b> (B, Al) dan huecos (tipo p, \(\sigma\approx N_ae\mu_h\)). Siempre se cumple la <b>ley de acción de masas</b> \(np=n_i^2\). El <b>efecto Hall</b> (campo magnético perpendicular a la corriente) crea una tensión \(V_H=IB/(nqt)\) cuyo signo dice si los portadores son electrones o huecos y cuyo valor da su concentración.</p></div><!--/amp1--><!--deep--><h3 id="t13-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<h4><span class="hn">1</span>Las bandas de energía</h4>
 <div class="box key deepnote"><b>Idea clave.</b> al juntar muchos átomos, los niveles de energía se agrupan en <b>bandas</b>. Lo que importa es cómo están llenas la <b>banda de valencia</b> y la <b>de conducción</b>, y la <b>separación</b> \(E_g\) entre ellas.</div>
 <ul><li><b>Metal:</b> las bandas se solapan o la de conducción está medio llena.</li><li><b>Semiconductor:</b> \(E_g\) pequeña (Si: 1,12 eV; Ge: 0,67 eV). Con energía térmica, algunos electrones saltan.</li><li><b>Aislante:</b> \(E_g\) grande (más de unos 3 eV).</li></ul>
-<h4>2. Intrínseco y extrínseco</h4>
+<h4><span class="hn">2</span>Intrínseco y extrínseco</h4>
 <ul><li><b>Intrínseco:</b> cada electrón que sube deja un <b>hueco</b>. \(n=p=n_i\).</li><li><b>Tipo n:</b> se dopa con un elemento del grupo V (P, As): aporta electrones.</li><li><b>Tipo p:</b> se dopa con uno del grupo III (B, Al): aporta huecos.</li></ul>
 <div class="eqd">\[\sigma=e\,(n\mu_n+p\mu_p),\qquad np=n_i^2\quad\text{(ley de acción de masas)}\]</div>
 <details class="dem"><summary><span class="pn">∴</span>El efecto de la temperatura</summary><div class="inner"><ul><li>En un semiconductor la conductividad <b>aumenta</b> con la temperatura (al revés que en un metal), porque aparecen más portadores: \(n_i\propto e^{-E_g/2kT}\).</li><li>Con dopaje, hay tres zonas: <b>extrínseca</b> (portadores = dopantes, casi constante), <b>agotamiento</b> y, a mucha temperatura, <b>intrínseca</b>.</li></ul></div></details>
-<h4>3. La unión p-n</h4>
+<h4><span class="hn">3</span>La unión p-n</h4>
 <ul><li>Al unir p y n, los portadores difunden y dejan una <b>zona de carga espacial</b> con un campo interno que los frena.</li><li><b>Polarización directa:</b> reduce la barrera y la corriente crece exponencialmente. <b>Inversa:</b> casi no hay corriente.</li></ul>
 <div class="eqd">\[I=I_s\left(e^{V/V_T}-1\right),\qquad V_T=\frac{kT}{q}\approx26\ \mathrm{mV}\ (300\ \mathrm K)\]</div>
 <p>Es el diodo, y la base de transistores, LED y células solares.</p>

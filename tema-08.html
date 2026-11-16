@@ -17,24 +17,64 @@
 <style id="lectura">
 @media screen{
 :root{--body:"Atkinson Hyperlegible Next","Atkinson Hyperlegible","Segoe UI",system-ui,-apple-system,sans-serif}
-body{font-family:var(--body);font-size:20.5px;line-height:2.1;letter-spacing:.022em;word-spacing:.09em}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+body{font-family:var(--body);font-size:20px;line-height:1.95;letter-spacing:.014em;word-spacing:.05em}
+p{margin:0 0 1.5em;max-width:64ch;hyphens:auto;-webkit-hyphens:auto}
+li{margin:.72em 0;max-width:64ch}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:17px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:25px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);letter-spacing:.1em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font:700 12px/1.7 var(--mono,monospace);letter-spacing:.09em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2em;font-size:12.5px;color:var(--fg);opacity:.72}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+.eqd{margin:1.65em 0;text-align:center;overflow-x:auto;overflow-y:hidden}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);
+ letter-spacing:.1em;text-transform:uppercase;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:18px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:17px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:15.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+.enun p,.inner p{text-align:left}
+@media (min-width:1040px){
+p,li{text-align:justify}
+.zero .lede,.enun p,.inner p,figcaption,.ft{text-align:left}
+}
+@media (max-width:600px){
+body{font-size:18.5px;line-height:1.9}
+p{text-align:left}
+.zero .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 </head>
@@ -46,25 +86,25 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c1);--tcs:var(--c1s)">
 <div class="sh"><span aria-hidden="true" class="badge">8</span><div class="shx"><p class="kick">Bloque II · Transformaciones y tratamientos · Tema 8</p><h2 id="t8">Tratamientos térmicos</h2><div class="tags"><span class="tag">Bloque II · Transformaciones y tratamientos</span><span class="tag">Primer parcial</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Interpretar las curvas TTT y CCT, describir recocido, normalizado, temple y revenido, explicar martensita y bainita, y manejar templabilidad y el ensayo Jominy.</p><p>Los tratamientos térmicos modifican la microestructura sin cambiar la composición. Parten de <b>austenizar</b> (calentar por encima de A₃ o A₁ para formar γ) y se diferencian en la <b>velocidad de enfriamiento</b>.</p>
-<p><b>Curva TTT (curva de la S)</b>: para un acero dado, da el tiempo de inicio y fin de transformación de la austenita a cada temperatura isoterma. Arriba (650-700 °C): <b>perlita gruesa</b> (blanda); a 550 °C: perlita fina; entre 550 y Ms: <b>bainita</b> (superior en forma de plumas, inferior acicular: buena combinación de dureza y tenacidad); por debajo de <b>Ms</b> (≈220 °C en el eutectoide) la austenita se transforma sin difusión en <b>martensita</b>, solución sólida sobresaturada de C en una red tetragonal (BCT), muy dura y frágil; termina en <b>Mf</b>. La curva <b>CCT</b> es la versión para enfriamiento continuo (desplazada a la derecha): es la que se usa en la práctica.</p>
-<p><b>Tratamientos</b>:</p>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> Interpretar las curvas TTT y CCT, describir recocido, normalizado, temple y revenido, explicar martensita y bainita, y manejar templabilidad y el ensayo Jominy.</p><p class="lede">Los tratamientos térmicos modifican la microestructura sin cambiar la composición. Parten de <b>austenizar</b> (calentar por encima de A₃ o A₁ para formar γ) y se diferencian en la <b>velocidad de enfriamiento</b>.</p>
+<p class="run"><b>Curva TTT (curva de la S):</b> para un acero dado, da el tiempo de inicio y fin de transformación de la austenita a cada temperatura isoterma. Arriba (650-700 °C): <b>perlita gruesa</b> (blanda); a 550 °C: perlita fina; entre 550 y Ms: <b>bainita</b> (superior en forma de plumas, inferior acicular: buena combinación de dureza y tenacidad); por debajo de <b>Ms</b> (≈220 °C en el eutectoide) la austenita se transforma sin difusión en <b>martensita</b>, solución sólida sobresaturada de C en una red tetragonal (BCT), muy dura y frágil; termina en <b>Mf</b>. La curva <b>CCT</b> es la versión para enfriamiento continuo (desplazada a la derecha): es la que se usa en la práctica.</p>
+<p class="run"><b>Tratamientos:</b> </p>
 <ul><li><b>Recocido</b>: calentar y enfriar MUY lento (en horno) → perlita gruesa: ablanda, elimina tensiones, mejora la mecanizabilidad y regenera el grano. Variantes: de regeneración, de ablandamiento (globular), contra acritud.</li>
 <li><b>Normalizado</b>: austenizar y enfriar al AIRE → perlita fina y grano homogéneo y afinado; deja el acero en un estado de referencia, más resistente que el recocido.</li>
 <li><b>Temple</b>: enfriar rápido (agua, aceite, sales) → <b>martensita</b>: máxima dureza, mínima tenacidad; hay riesgo de grietas y deformaciones por las tensiones térmicas y el aumento de volumen (la martensita ocupa más que la austenita). Se evitan templando en medio menos severo, con precalentamiento y con temple escalonado (martempering).</li>
 <li><b>Revenido</b>: SIEMPRE después del temple; calentar por debajo de A₁ para precipitar carburos y recuperar tenacidad a costa de algo de dureza. Temple + revenido = <b>bonificado</b>.</li>
 <li><b>Austempering</b>: isotérmico en la zona bainítica → bainita, sin el riesgo de grietas del temple.</li></ul>
-<p><b>Templabilidad</b>: NO es dureza, sino la facilidad de formar martensita en profundidad. Se mide con el <b>ensayo Jominy</b> (UNE-EN ISO 642): probeta normalizada enfriada por un chorro de agua en un extremo; se mide la dureza a lo largo y se obtiene la curva de templabilidad. La mejoran los elementos de aleación (Cr, Mo, Ni, Mn: desplazan la curva TTT a la derecha) y el tamaño de grano austenítico grande.</p></div>
+<p class="run"><b>Templabilidad:</b> NO es dureza, sino la facilidad de formar martensita en profundidad. Se mide con el <b>ensayo Jominy</b> (UNE-EN ISO 642): probeta normalizada enfriada por un chorro de agua en un extremo; se mide la dureza a lo largo y se obtiene la curva de templabilidad. La mejoran los elementos de aleación (Cr, Mo, Ni, Mn: desplazan la curva TTT a la derecha) y el tamaño de grano austenítico grande.</p></div>
 <!--ill--><div class="ill-wrap"><h3 class="ill-h" style="margin:22px 0 4px">En imágenes</h3><figure class="ill"><div class="ill-t">El camino de enfriamiento decide la microestructura</div><svg viewBox="0 0 560 262" role="img" aria-label="Curva TTT" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><line x1="36" y1="214" x2="282.8" y2="214" stroke="var(--muted)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="290,214 282.7,217.3 282.7,210.7" fill="var(--muted)"/><line x1="36" y1="214" x2="36" y2="37.2" stroke="var(--muted)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="36,30 39.3,37.3 32.7,37.3" fill="var(--muted)"/><text x="42" y="28" fill="var(--muted)" font-size="12" text-anchor="start" font-style="italic" opacity="1">T</text><text x="290" y="232" fill="var(--muted)" font-size="12" text-anchor="end" font-style="italic" opacity="1">tiempo (log)</text><line x1="36" y1="56" x2="290" y2="56" stroke="var(--warn,#b8730c)" stroke-width="1.6" stroke-dasharray="4 3" opacity="1" stroke-linecap="round"/><text x="150" y="48" fill="var(--warn,#b8730c)" font-size="11" text-anchor="middle" opacity="1">A₁ = 727 °C</text><line x1="36" y1="184" x2="290" y2="184" stroke="var(--c5,#c43d63)" stroke-width="1.4" stroke-dasharray="4 3" opacity="1" stroke-linecap="round"/><text x="288" y="198" fill="var(--c5,#c43d63)" font-size="11.5" text-anchor="end" font-weight="700" opacity="1">Ms</text><path d="M72,58 C72,108 84,128 120,130 C176,132 214,150 272,168" fill="none" stroke="var(--tc,var(--accent))" stroke-width="3" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><path d="M118,58 C118,100 132,118 166,120 C210,122 248,138 284,152" fill="none" stroke="var(--tc,var(--accent))" stroke-width="2.6" opacity="1" stroke-dasharray="6 3" stroke-linejoin="round" stroke-linecap="round"/><path d="M52,52 L58,210" fill="none" stroke="var(--c6,#2c8a52)" stroke-width="3" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><path d="M52,52 C110,100 170,160 200,212" fill="none" stroke="var(--c2,#3a63c4)" stroke-width="2.8" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><text x="186" y="92" fill="var(--muted)" font-size="11.5" text-anchor="middle" font-weight="700" opacity="1">austenita</text><text x="240" y="177" fill="var(--fg)" font-size="11.5" text-anchor="middle" font-weight="700" opacity="1">perlita</text><text x="112" y="170" fill="var(--fg)" font-size="11.5" text-anchor="middle" font-weight="700" opacity="1">bainita</text><text x="112" y="206" fill="var(--c6,#2c8a52)" font-size="11.5" text-anchor="middle" font-weight="700" opacity="1">martensita</text><text x="64" y="222" fill="var(--c6,#2c8a52)" font-size="11" text-anchor="start" font-weight="700" opacity="1">temple</text><text x="318" y="56" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">Temple rápido: curva</text><text x="318" y="78" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">que no corta la «nariz»</text><text x="318" y="100" fill="var(--c6,#2c8a52)" font-size="14" text-anchor="start" font-weight="700" opacity="1">→ martensita.</text><text x="318" y="133" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">Enfriar lento corta la</text><text x="318" y="155" fill="var(--c2,#3a63c4)" font-size="14" text-anchor="start" font-weight="700" opacity="1">curva → perlita.</text><text x="318" y="188" fill="var(--warn,#b8730c)" font-size="14" text-anchor="start" font-weight="700" opacity="1">Ms: inicio de la</text><text x="318" y="210" fill="var(--warn,#b8730c)" font-size="14" text-anchor="start" font-weight="700" opacity="1">martensita.</text></svg><figcaption>Para obtener martensita hay que enfriar tan deprisa que la trayectoria no toque la zona donde se forman perlita y bainita.</figcaption></figure><figure class="ill"><div class="ill-t">Se «paga» dureza para ganar tenacidad</div><svg viewBox="0 0 560 262" role="img" aria-label="Revenido" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><line x1="40" y1="214" x2="282.8" y2="214" stroke="var(--muted)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="290,214 282.7,217.3 282.7,210.7" fill="var(--muted)"/><line x1="40" y1="214" x2="40" y2="37.2" stroke="var(--muted)" stroke-width="1.6" opacity="1" stroke-linecap="round"/><polygon points="40,30 43.3,37.3 36.7,37.3" fill="var(--muted)"/><text x="46" y="28" fill="var(--muted)" font-size="12" text-anchor="start" font-style="italic" opacity="1">dureza</text><text x="290" y="232" fill="var(--muted)" font-size="12" text-anchor="end" font-style="italic" opacity="1">T de revenido</text><path d="M44,56 C100,60 150,90 200,140 C230,170 260,190 286,198" fill="none" stroke="var(--tc,var(--accent))" stroke-width="3" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><circle cx="70" cy="58" r="4.5" fill="var(--warn,#b8730c)" stroke="none" stroke-width="1.8" opacity="1"/><circle cx="240" cy="172" r="4.5" fill="var(--warn,#b8730c)" stroke="none" stroke-width="1.8" opacity="1"/><text x="70" y="44" fill="var(--muted)" font-size="12" text-anchor="start" opacity="1">dura y frágil</text><text x="220" y="200" fill="var(--muted)" font-size="12" text-anchor="end" opacity="1">blanda y tenaz</text><text x="318" y="56" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">Tras el temple el acero</text><text x="318" y="78" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">es muy duro y frágil.</text><text x="318" y="111" fill="var(--tc,var(--accent))" font-size="14" text-anchor="start" font-weight="700" opacity="1">Revenido: calentar</text><text x="318" y="133" fill="var(--tc,var(--accent))" font-size="14" text-anchor="start" font-weight="700" opacity="1">por debajo de A₁ y</text><text x="318" y="155" fill="var(--tc,var(--accent))" font-size="14" text-anchor="start" font-weight="700" opacity="1">mantener.</text><text x="318" y="188" fill="var(--warn,#b8730c)" font-size="14" text-anchor="start" font-weight="700" opacity="1">Más T → menos dureza,</text><text x="318" y="210" fill="var(--warn,#b8730c)" font-size="14" text-anchor="start" font-weight="700" opacity="1">más tenacidad.</text></svg><figcaption>El revenido libera tensiones y precipita carburos; se elige la temperatura según la combinación dureza-tenacidad deseada.</figcaption></figure></div><!--/ill--><details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 8 <span class="src">6 símbolos</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">A₁, A₃, A_cm</td><td>Temperaturas críticas</td><td class="u">°C; A₁ = 727</td></tr><tr><td class="sym">TTT / CCT</td><td>Transformación isoterma / enfriamiento continuo</td><td class="u"></td></tr><tr><td class="sym">Ms, Mf</td><td>Inicio y fin de la martensita</td><td class="u">°C; ≈220 en el eutectoide</td></tr><tr><td class="sym">martensita</td><td>BCT sobresaturada, sin difusión</td><td class="u"></td></tr><tr><td class="sym">bainita</td><td>α + carburos finos (plumas o agujas)</td><td class="u"></td></tr><tr><td class="sym">Jominy</td><td>Ensayo de templabilidad</td><td class="u">UNE-EN ISO 642</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva - curva TTT y recorrido de cada tratamiento</p><div data-sim="ttt"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano en el examen.</figcaption></figure>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Los tres grandes tratamientos térmicos</p><p>Un tratamiento térmico es un ciclo de calentamiento, permanencia y enfriamiento que cambia la estructura sin cambiar la forma. <b>Recocido</b>: calentar y enfriar lentamente en el horno (blanda, homogénea, sin tensiones). <b>Normalizado</b>: enfriar al aire (grano fino, resistencia algo mayor). <b>Temple</b>: calentar hasta austenizar y enfriar rápido para obtener <b>martensita</b>, dura y frágil. Tras el temple se hace casi siempre un <b>revenido</b> (calentar a 200–600 °C) que sacrifica algo de dureza para ganar tenacidad.</p><p class="ft">Curvas TTT y templabilidad</p><p>La curva TTT (o curva en «S») indica en qué tiempo y a qué temperatura se transforma la austenita en perlita o bainita. Para obtener martensita hay que enfriar tan deprisa que se evite la «nariz» de la curva: la <b>velocidad crítica de temple</b>. Por debajo de la temperatura \(M_s\) la austenita se transforma en martensita sin difusión. Los aleantes (Cr, Mo, Ni…) desplazan la nariz a la derecha y facilitan el temple (más <b>templabilidad</b>). Un medio de temple más severo (agua) enfría más rápido que el aceite, pero aumenta el riesgo de grietas.</p></div><!--/amp1--><!--deep--><h3 id="t8-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
-<h4>1. Por qué importa la velocidad de enfriamiento</h4>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Los tres grandes tratamientos térmicos</p><p class="lede">Un tratamiento térmico es un ciclo de calentamiento, permanencia y enfriamiento que cambia la estructura sin cambiar la forma. <b>Recocido</b>: calentar y enfriar lentamente en el horno (blanda, homogénea, sin tensiones). <b>Normalizado</b>: enfriar al aire (grano fino, resistencia algo mayor). <b>Temple</b>: calentar hasta austenizar y enfriar rápido para obtener <b>martensita</b>, dura y frágil. Tras el temple se hace casi siempre un <b>revenido</b> (calentar a 200–600 °C) que sacrifica algo de dureza para ganar tenacidad.</p><p class="ft">Curvas TTT y templabilidad</p><p>La curva TTT (o curva en «S») indica en qué tiempo y a qué temperatura se transforma la austenita en perlita o bainita. Para obtener martensita hay que enfriar tan deprisa que se evite la «nariz» de la curva: la <b>velocidad crítica de temple</b>. Por debajo de la temperatura \(M_s\) la austenita se transforma en martensita sin difusión. Los aleantes (Cr, Mo, Ni…) desplazan la nariz a la derecha y facilitan el temple (más <b>templabilidad</b>). Un medio de temple más severo (agua) enfría más rápido que el aceite, pero aumenta el riesgo de grietas.</p></div><!--/amp1--><!--deep--><h3 id="t8-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<h4><span class="hn">1</span>Por qué importa la velocidad de enfriamiento</h4>
 <div class="box key deepnote"><b>Idea clave.</b> el diagrama Fe-C describe el equilibrio (enfriamiento infinitamente lento). Si enfrías rápido, la austenita no tiene tiempo de transformarse en ferrita y cementita, y aparecen estructuras <b>fuera de equilibrio</b>.</div>
-<h4>2. Curvas TTT y enfriamiento continuo</h4>
+<h4><span class="hn">2</span>Curvas TTT y enfriamiento continuo</h4>
 <ul><li>La curva <b>TTT</b> (o «S») indica cuánto tarda en transformarse la austenita a cada temperatura constante.</li><li>Cerca de 727 °C: <b>perlita</b> (gruesa a más temperatura, fina a menos). Más abajo: <b>bainita</b>.</li><li>Si se enfría tan rápido que se esquiva la «nariz» de la curva, la austenita se transforma sin difusión en <b>martensita</b>: muy dura y frágil.</li></ul>
 <details class="dem"><summary><span class="pn">∴</span>Martensita y temple</summary><div class="inner"><ul><li>La <b>martensita</b> es una solución sobresaturada de carbono en hierro (red tetragonal): sin difusión, dura y con tensiones internas.</li><li>Empieza a formarse a \(M_s\) y acaba a \(M_f\), que bajan al subir el carbono. Puede quedar <b>austenita retenida</b>.</li><li><b>Templabilidad:</b> profundidad hasta la que se obtiene martensita. La aumentan elementos de aleación (Mn, Cr, Mo, Ni) y se mide con el ensayo <b>Jominy</b>.</li></ul></div></details>
-<h4>3. Los tratamientos habituales</h4>
+<h4><span class="hn">3</span>Los tratamientos habituales</h4>
 <ul><li><b>Recocido:</b> calentar y enfriar muy lento. Estructura blanda y estable.</li><li><b>Normalizado:</b> enfriar al aire. Grano más fino, algo más resistente.</li><li><b>Temple:</b> enfriar rápido (agua, aceite). Martensita: dura y frágil.</li><li><b>Revenido:</b> calentar el templado a 200-650 °C. Reduce fragilidad y tensiones a cambio de algo de dureza. Cuanta más temperatura, más tenacidad y menos dureza.</li><li><b>Cementación y nitruración:</b> enriquecer la superficie en C o N para tener dureza superficial y núcleo tenaz.</li></ul>
 </div><!--/deep--><h3 id="t8-formulas">Lo que tienes que saber</h3>
 <div class="box key"><ul>

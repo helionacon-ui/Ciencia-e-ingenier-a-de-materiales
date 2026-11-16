@@ -17,24 +17,64 @@
 <style id="lectura">
 @media screen{
 :root{--body:"Atkinson Hyperlegible Next","Atkinson Hyperlegible","Segoe UI",system-ui,-apple-system,sans-serif}
-body{font-family:var(--body);font-size:20.5px;line-height:2.1;letter-spacing:.022em;word-spacing:.09em}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+body{font-family:var(--body);font-size:20px;line-height:1.95;letter-spacing:.014em;word-spacing:.05em}
+p{margin:0 0 1.5em;max-width:64ch;hyphens:auto;-webkit-hyphens:auto}
+li{margin:.72em 0;max-width:64ch}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:17px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:25px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);letter-spacing:.1em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font:700 12px/1.7 var(--mono,monospace);letter-spacing:.09em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2em;font-size:12.5px;color:var(--fg);opacity:.72}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+.eqd{margin:1.65em 0;text-align:center;overflow-x:auto;overflow-y:hidden}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);
+ letter-spacing:.1em;text-transform:uppercase;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:18px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:17px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:15.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+.enun p,.inner p{text-align:left}
+@media (min-width:1040px){
+p,li{text-align:justify}
+.zero .lede,.enun p,.inner p,figcaption,.ft{text-align:left}
+}
+@media (max-width:600px){
+body{font-size:18.5px;line-height:1.9}
+p{text-align:left}
+.zero .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 </head>
@@ -46,10 +86,10 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c1);--tcs:var(--c1s)">
 <div class="sh"><span aria-hidden="true" class="badge">16</span><div class="shx"><p class="kick">Bloque IV · Propiedades funcionales · Tema 16</p><h2 id="t16">Corrosión y degradación de materiales</h2><div class="tags"><span class="tag">Bloque IV · Propiedades funcionales</span><span class="tag">Segundo parcial</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Explicar la corrosión electroquímica, usar la serie galvánica, identificar los tipos de corrosión y elegir métodos de protección.</p><p><b>Corrosión electroquímica</b>: necesita <b>ánodo</b> (se oxida y se destruye: \(M\rightarrow M^{n+}+ne^-\)), <b>cátodo</b> (reducción: \(2H^++2e^-\rightarrow H_2\) en medio ácido, o \(O_2+2H_2O+4e^-\rightarrow4OH^-\) en medio neutro aireado), <b>conexión eléctrica</b> y <b>electrolito</b>. Quitando cualquiera de los cuatro, se detiene.</p>
-<p><b>Serie galvánica</b> (en agua de mar, de más noble a más activo): grafito, Ti, inoxidables pasivos, Ni, Cu-Ni, bronces, latones, Cu, Sn, Pb, aceros inoxidables activos, hierro y acero, Al y sus aleaciones, Zn, Mg. En un <b>par galvánico</b> se corroe el más <b>activo</b> (anódico). Es peor si la relación de áreas es desfavorable (<b>ánodo pequeño</b> y cátodo grande: densidad de corriente altísima; de ahí el error de usar tornillos de acero en una chapa de cobre).</p>
-<p><b>Tipos</b>: <b>uniforme</b> (previsible, la menos peligrosa), <b>galvánica</b>, <b>por picadura</b> (pitting, con cloruros: muy peligrosa porque perfora sin pérdida de masa apreciable), <b>intergranular</b> (sensibilización de inoxidables al soldar: precipitación de carburos de Cr en los bordes; se evita con grados L de bajo C o estabilizados con Ti/Nb), <b>por resquicio</b> (crevice), <b>erosión-corrosión</b>, <b>bajo tensión</b> (SCC) y <b>fragilización por hidrógeno</b>. En polímeros no hay corrosión electroquímica, sino <b>degradación</b> (UV, oxidación, hinchamiento por disolventes); en cerámicos, ataque químico a alta temperatura.</p>
-<p><b>Protección</b>:</p>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> Explicar la corrosión electroquímica, usar la serie galvánica, identificar los tipos de corrosión y elegir métodos de protección.</p><p class="run"><b>Corrosión electroquímica:</b> necesita <b>ánodo</b> (se oxida y se destruye: \(M\rightarrow M^{n+}+ne^-\)), <b>cátodo</b> (reducción: \(2H^++2e^-\rightarrow H_2\) en medio ácido, o \(O_2+2H_2O+4e^-\rightarrow4OH^-\) en medio neutro aireado), <b>conexión eléctrica</b> y <b>electrolito</b>. Quitando cualquiera de los cuatro, se detiene.</p>
+<p class="run"><b>Serie galvánica:</b> (en agua de mar, de más noble a más activo): grafito, Ti, inoxidables pasivos, Ni, Cu-Ni, bronces, latones, Cu, Sn, Pb, aceros inoxidables activos, hierro y acero, Al y sus aleaciones, Zn, Mg. En un <b>par galvánico</b> se corroe el más <b>activo</b> (anódico). Es peor si la relación de áreas es desfavorable (<b>ánodo pequeño</b> y cátodo grande: densidad de corriente altísima; de ahí el error de usar tornillos de acero en una chapa de cobre).</p>
+<p class="run"><b>Tipos:</b> <b>uniforme</b> (previsible, la menos peligrosa), <b>galvánica</b>, <b>por picadura</b> (pitting, con cloruros: muy peligrosa porque perfora sin pérdida de masa apreciable), <b>intergranular</b> (sensibilización de inoxidables al soldar: precipitación de carburos de Cr en los bordes; se evita con grados L de bajo C o estabilizados con Ti/Nb), <b>por resquicio</b> (crevice), <b>erosión-corrosión</b>, <b>bajo tensión</b> (SCC) y <b>fragilización por hidrógeno</b>. En polímeros no hay corrosión electroquímica, sino <b>degradación</b> (UV, oxidación, hinchamiento por disolventes); en cerámicos, ataque químico a alta temperatura.</p>
+<p class="run"><b>Protección:</b> </p>
 <ul><li><b>Selección del material</b> y diseño (evitar resquicios, pares galvánicos, zonas de estancamiento).</li>
 <li><b>Recubrimientos</b>: pintura, barnices, plásticos (barrera); metálicos nobles (cromado, niquelado: si se raya, empeora porque el acero queda como ánodo pequeño) o <b>de sacrificio</b> (<b>galvanizado</b> con Zn: aunque se raye, el Zn sigue protegiendo al acero).</li>
 <li><b>Protección catódica</b>: <b>ánodos de sacrificio</b> (Zn o Mg en cascos de barco, calentadores y tuberías) o <b>corriente impresa</b>.</li>
@@ -57,12 +97,12 @@ details>summary{line-height:1.7;padding-block:.5em}
 <!--ill--><div class="ill-wrap"><h3 class="ill-h" style="margin:22px 0 4px">En imágenes</h3><figure class="ill"><div class="ill-t">Dos metales y un electrolito forman una pila</div><svg viewBox="0 0 560 262" role="img" aria-label="Pila galvánica" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><rect x="36" y="110" width="208" height="94" rx="6" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="2.2" opacity="0.08"/><rect x="70" y="40" width="18" height="130" rx="0" fill="var(--c5,#c43d63)" stroke="var(--c5,#c43d63)" stroke-width="1.8" opacity="0.5"/><rect x="196" y="40" width="18" height="130" rx="0" fill="var(--warn,#b8730c)" stroke="var(--warn,#b8730c)" stroke-width="1.8" opacity="0.5"/><line x1="79" y1="40" x2="79" y2="24" stroke="var(--fg)" stroke-width="1.8" opacity="1" stroke-linecap="round"/><line x1="205" y1="40" x2="205" y2="24" stroke="var(--fg)" stroke-width="1.8" opacity="1" stroke-linecap="round"/><line x1="79" y1="24" x2="205" y2="24" stroke="var(--fg)" stroke-width="1.8" opacity="1" stroke-linecap="round"/><line x1="120" y1="24" x2="152.8" y2="24" stroke="var(--c2,#3a63c4)" stroke-width="2" opacity="1" stroke-linecap="round"/><polygon points="160,24 152.7,27.3 152.7,20.7" fill="var(--c2,#3a63c4)"/><text x="79" y="190" fill="var(--c5,#c43d63)" font-size="12" text-anchor="middle" font-weight="700" opacity="1">ánodo</text><text x="205" y="190" fill="var(--warn,#b8730c)" font-size="12" text-anchor="middle" font-weight="700" opacity="1">cátodo</text><text x="79" y="218" fill="var(--c5,#c43d63)" font-size="11" text-anchor="middle" font-weight="700" opacity="1">se oxida (corroe)</text><text x="205" y="218" fill="var(--warn,#b8730c)" font-size="11" text-anchor="middle" font-weight="700" opacity="1">se reduce</text><text x="142" y="16" fill="var(--c2,#3a63c4)" font-size="12" text-anchor="middle" font-weight="700" opacity="1">e⁻</text><text x="318" y="56" fill="var(--c5,#c43d63)" font-size="13.5" text-anchor="start" font-weight="700" opacity="1">Ánodo: M → M<tspan font-size="9.2" dy="-5.1">n</tspan><tspan dy="5.1"></tspan>⁺ + n e⁻</text><text x="318" y="78" fill="var(--warn,#b8730c)" font-size="13.5" text-anchor="start" font-weight="700" opacity="1">Cátodo: reducción</text><text x="318" y="100" fill="var(--warn,#b8730c)" font-size="13.5" text-anchor="start" font-weight="700" opacity="1">(O₂, H⁺…).</text><text x="318" y="133" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">Se corroe el metal</text><text x="318" y="155" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">menos noble.</text><text x="318" y="188" fill="var(--muted)" font-size="13.5" text-anchor="start" opacity="1">Hace falta electrolito.</text></svg><figcaption>El metal más activo cede electrones y se disuelve; el menos activo queda protegido. Es el principio de la corrosión galvánica.</figcaption></figure><figure class="ill"><div class="ill-t">Un mismo proceso, varias formas de atacar</div><svg viewBox="0 0 560 262" role="img" aria-label="Formas de corrosión" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><rect x="24" y="36" width="118" height="64" rx="6" fill="var(--surface,#fff)" stroke="var(--muted)" stroke-width="1.4" opacity="1"/><path d="M28,52 L138,52" fill="none" stroke="var(--c5,#c43d63)" stroke-width="3" opacity="1" stroke-dasharray="6 2" stroke-linejoin="round" stroke-linecap="round"/><text x="83" y="90" fill="var(--tc,var(--accent))" font-size="12" text-anchor="middle" font-weight="700" opacity="1">Uniforme</text><text x="83" y="114" fill="var(--muted)" font-size="10.5" text-anchor="middle" font-weight="400" opacity="1">todo el metal</text><rect x="158" y="36" width="118" height="64" rx="6" fill="var(--surface,#fff)" stroke="var(--muted)" stroke-width="1.4" opacity="1"/><line x1="162" y1="48" x2="272" y2="48" stroke="var(--muted)" stroke-width="2" opacity="1" stroke-linecap="round"/><path d="M182,48 L188,76 L194,48" fill="none" stroke="var(--c5,#c43d63)" stroke-width="2.4" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><path d="M222,48 L228,76 L234,48" fill="none" stroke="var(--c5,#c43d63)" stroke-width="2.4" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><path d="M248,48 L254,76 L260,48" fill="none" stroke="var(--c5,#c43d63)" stroke-width="2.4" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><text x="217" y="90" fill="var(--tc,var(--accent))" font-size="12" text-anchor="middle" font-weight="700" opacity="1">Picadura</text><text x="217" y="114" fill="var(--muted)" font-size="10.5" text-anchor="middle" font-weight="400" opacity="1">hoyos profundos</text><rect x="24" y="136" width="118" height="64" rx="6" fill="var(--surface,#fff)" stroke="var(--muted)" stroke-width="1.4" opacity="1"/><rect x="34" y="144" width="44" height="28" rx="0" fill="var(--c5,#c43d63)" stroke="var(--c5,#c43d63)" stroke-width="1.6" opacity="0.3"/><rect x="86" y="144" width="44" height="28" rx="0" fill="var(--warn,#b8730c)" stroke="var(--warn,#b8730c)" stroke-width="1.6" opacity="0.3"/><text x="83" y="190" fill="var(--tc,var(--accent))" font-size="12" text-anchor="middle" font-weight="700" opacity="1">Galvánica</text><text x="83" y="214" fill="var(--muted)" font-size="10.5" text-anchor="middle" font-weight="400" opacity="1">par de metales</text><rect x="158" y="136" width="118" height="64" rx="6" fill="var(--surface,#fff)" stroke="var(--muted)" stroke-width="1.4" opacity="1"/><line x1="182" y1="142" x2="182" y2="176" stroke="var(--muted)" stroke-width="1.2" opacity="1" stroke-linecap="round"/><line x1="218" y1="142" x2="218" y2="176" stroke="var(--muted)" stroke-width="1.2" opacity="1" stroke-linecap="round"/><line x1="254" y1="142" x2="254" y2="176" stroke="var(--muted)" stroke-width="1.2" opacity="1" stroke-linecap="round"/><path d="M218,142 L218,176" fill="none" stroke="var(--c5,#c43d63)" stroke-width="3" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><text x="217" y="190" fill="var(--tc,var(--accent))" font-size="12" text-anchor="middle" font-weight="700" opacity="1">Intergranular</text><text x="217" y="214" fill="var(--muted)" font-size="10.5" text-anchor="middle" font-weight="400" opacity="1">límites de grano</text></svg><figcaption>Reconocer la forma ayuda a diagnosticar la causa: una picadura localizada es más peligrosa que una pérdida uniforme de espesor.</figcaption></figure></div><!--/ill--><details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 16 <span class="src">6 símbolos</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">ánodo / cátodo</td><td>Se oxida (se corroe) / se reduce</td><td class="u"></td></tr><tr><td class="sym">serie galvánica</td><td>Orden de nobleza en el medio</td><td class="u"></td></tr><tr><td class="sym">fem</td><td>E_cátodo − E_ánodo</td><td class="u">V</td></tr><tr><td class="sym">F</td><td>Constante de Faraday</td><td class="u">96 500 C/mol</td></tr><tr><td class="sym">relación de áreas</td><td>Cátodo/ánodo: el riesgo real</td><td class="u"></td></tr><tr><td class="sym">pasivación</td><td>Capa protectora (Cr₂O₃, Al₂O₃, TiO₂)</td><td class="u"></td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva - par galvanico y relacion de areas</p><div data-sim="corrosion"></div><figcaption>Mueve los controles y lee el recuadro: la figura calcula lo mismo que tú harías a mano en el examen.</figcaption></figure>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">La corrosión es una pila</p><p>Corroerse es oxidarse: el metal pierde electrones (\(\text{M}\to\text{M}^{n+}+ne^-\)) en el <b>ánodo</b>, mientras en el <b>cátodo</b> otra especie los consume (reducción de O₂ o de H⁺). Hacen falta además un electrolito y un camino eléctrico. Si falta alguno de estos cuatro elementos, no hay corrosión. La fem de la pila \(E=E_{cat}-E_{an}\) debe ser positiva para que sea espontánea; en la <b>serie galvánica</b>, el metal más activo es el ánodo y se corroe.</p><p class="ft">Velocidad y protección</p><p>Por la ley de Faraday, la masa perdida es \(m=\dfrac{M\,I\,t}{nF}\) (con \(F=96\,500\) C/mol). La velocidad de penetración es proporcional a la <b>densidad de corriente</b> \(i_{corr}\). Los peores casos: <b>ánodo pequeño y cátodo grande</b> (toda la corriente se concentra en poco metal). Protección: <b>recubrimientos</b>, <b>protección catódica</b> (ánodo de sacrificio de Zn o Mg, o corriente impresa), <b>inhibidores</b>, <b>materiales pasivables</b> (inoxidables) y un buen diseño que evite pares galvánicos y rendijas.</p></div><!--/amp1--><!--deep--><h3 id="t16-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
-<h4>1. La corrosión es una pila</h4>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">La corrosión es una pila</p><p class="lede">Corroerse es oxidarse: el metal pierde electrones (\(\text{M}\to\text{M}^{n+}+ne^-\)) en el <b>ánodo</b>, mientras en el <b>cátodo</b> otra especie los consume (reducción de O₂ o de H⁺). Hacen falta además un electrolito y un camino eléctrico. Si falta alguno de estos cuatro elementos, no hay corrosión. La fem de la pila \(E=E_{cat}-E_{an}\) debe ser positiva para que sea espontánea; en la <b>serie galvánica</b>, el metal más activo es el ánodo y se corroe.</p><p class="ft">Velocidad y protección</p><p>Por la ley de Faraday, la masa perdida es \(m=\dfrac{M\,I\,t}{nF}\) (con \(F=96\,500\) C/mol). La velocidad de penetración es proporcional a la <b>densidad de corriente</b> \(i_{corr}\). Los peores casos: <b>ánodo pequeño y cátodo grande</b> (toda la corriente se concentra en poco metal). Protección: <b>recubrimientos</b>, <b>protección catódica</b> (ánodo de sacrificio de Zn o Mg, o corriente impresa), <b>inhibidores</b>, <b>materiales pasivables</b> (inoxidables) y un buen diseño que evite pares galvánicos y rendijas.</p></div><!--/amp1--><!--deep--><h3 id="t16-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<h4><span class="hn">1</span>La corrosión es una pila</h4>
 <div class="box key deepnote"><b>Idea clave.</b> la corrosión de un metal en un medio acuoso es una <b>reacción electroquímica</b>: necesita un ánodo, un cátodo, un conductor eléctrico y un electrolito.</div>
 <ul><li><b>Ánodo</b> (oxidación): el metal se disuelve, \(\mathrm{M}\rightarrow\mathrm{M}^{n+}+ne^-\).</li><li><b>Cátodo</b> (reducción): consume los electrones. En medio neutro con aire: \(\mathrm O_2+2\mathrm H_2\mathrm O+4e^-\rightarrow4\mathrm{OH}^-\).</li></ul>
 <details class="dem"><summary><span class="pn">∴</span>Corrosión galvánica y velocidad</summary><div class="inner"><ul><li>Al unir dos metales distintos, el <b>menos noble</b> (menor potencial) actúa de ánodo y se corroe más rápido; el otro queda protegido.</li><li><b>Relación de áreas:</b> la situación peor es un ánodo pequeño con un cátodo grande (toda la corriente se concentra en poco metal).</li><li><b>Ley de Faraday:</b> la masa disuelta es \(m=\dfrac{ItM}{nF}\). La velocidad de corrosión se expresa como pérdida de espesor por año (mm/año).</li></ul></div></details>
-<h4>2. Formas de corrosión y cómo protegerse</h4>
+<h4><span class="hn">2</span>Formas de corrosión y cómo protegerse</h4>
 <ul><li><b>Uniforme, picaduras, grietas</b> (zonas sin oxígeno), <b>intergranular</b>, <b>bajo tensión</b> y <b>erosión</b>.</li><li><b>Pasivación:</b> capa de óxido fina y adherente (Al, Cr, Ti) que frena la corrosión.</li></ul>
 <p>Protección:</p>
 <ul><li><b>Recubrimientos</b> (pintura, galvanizado). El zinc protege al acero aunque el recubrimiento se raye.</li><li><b>Protección catódica:</b> con ánodo de sacrificio (Zn, Mg) o con corriente impresa.</li><li><b>Inhibidores</b> y <b>diseño</b> (evitar grietas y contactos entre metales distintos).</li></ul>
